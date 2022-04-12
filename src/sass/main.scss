@@ -1,0 +1,27 @@
+.search-form {
+  position: fixed;
+  width: 100%;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(104, 126, 197);
+  padding: 10px;
+  div {
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    // border-radius: 5px;
+    width: 180px;
+    margin: 0 auto;
+  }
+  input {
+    // border-radius: 5px;
+    border-radius: 5px 0 0 5px;
+    text-align: center;
+    border: none;
+    margin-right: 0;
+  }
+  button {
+    border-radius: 0 5px 5px 0;
+    border: none;
+  }
+}
