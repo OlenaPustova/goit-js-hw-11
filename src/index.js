@@ -33,14 +33,14 @@ async function inputSearch(e) {
   e.preventDefault();
   searchWords = e.currentTarget.elements.searchQuery.value;
   const images = await fetchImages(searchWords);
-  loadMoreBtnRef.classList.remove('is-hidden');
 
   if (images.hits.length === 0 || !images.hits) {
-    loadMoreBtnRef.classList.add('is-hidden');
-
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.',
     );
+  } else if (images.hits.length > 0) {
+    Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
+    loadMoreBtnRef.classList.remove('is-hidden');
   }
   countImages += images.hits.length;
   renderPage(images);
