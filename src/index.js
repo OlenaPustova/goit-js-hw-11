@@ -12,6 +12,7 @@ loadMoreBtnRef.addEventListener('click', onLoadMore);
 
 let page = 1;
 let searchWords = '';
+let countImages = 0;
 
 async function fetchImages(searchWords) {
   try {
@@ -34,24 +35,25 @@ async function inputSearch(e) {
   const images = await fetchImages(searchWords);
   loadMoreBtnRef.classList.remove('is-hidden');
 
-  if (images.hits.length === 0) {
+  if (images.hits.length === 0 || !images.hits) {
     loadMoreBtnRef.classList.add('is-hidden');
 
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.',
     );
   }
+  countImages += images.hits.length;
   renderPage(images);
 }
 
 async function onLoadMore() {
   page += 1;
   const images = await fetchImages(searchWords);
-  if (images.hits.length === 0) {
-    Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.',
-    );
+  if (!images.hits) {
+    loadMoreBtnRef.classList.add('is-hidden');
+    Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`);
   }
+
   renderPage(images);
 }
 
@@ -87,5 +89,3 @@ function renderPage(cards) {
   const markupCards = markupCard(cards.hits);
   galleryRef.insertAdjacentHTML('beforeend', markupCards);
 }
-
-// markupPage();
