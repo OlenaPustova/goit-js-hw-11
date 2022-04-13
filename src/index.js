@@ -29,17 +29,22 @@ async function fetchImages(searchWords) {
 }
 
 async function inputSearch(e) {
-  galleryRef.innerHTML = '';
   e.preventDefault();
+  galleryRef.innerHTML = '';
+  page = 1;
   searchWords = e.currentTarget.elements.searchQuery.value;
   const images = await fetchImages(searchWords);
-
   if (images.hits.length === 0 || !images.hits) {
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.',
     );
-  } else if (images.hits.length > 0) {
+  } else if (images.totalHits > 0) {
     Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images.`);
+    console.log(images.totalHits);
+  }
+  if (images.totalHits > 40) {
+    console.log(images.totalHits);
+
     loadMoreBtnRef.classList.remove('is-hidden');
   }
   countImages += images.hits.length;
