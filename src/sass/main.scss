@@ -21,13 +21,6 @@ button {
   cursor: pointer;
 }
 
-// img {
-//   display: block;
-//   max-width: 100%;
-//   width: 100%;
-//   height: auto;
-// }
-
 .search-form {
   position: fixed;
   width: 100%;
@@ -39,16 +32,15 @@ button {
     display: flex;
     justify-content: center;
     height: 30px;
-    // border-radius: 5px;
     width: 180px;
     margin: 0 auto;
   }
   input {
-    // border-radius: 5px;
     border-radius: 5px 0 0 5px;
     text-align: center;
     border: none;
     margin-right: 0;
+    height: 30px;
   }
   button {
     border-radius: 0 5px 5px 0;
@@ -94,5 +86,4 @@ button {
   &.is-hidden {
     display: none;
   }
-  // display: none;
 }
